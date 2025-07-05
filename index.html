@@ -18,7 +18,7 @@
                 <option value="3" selected>3개월 9000원</option>
                 <option value="4">4개월 12000원</option>
             </select>
-            <label>사용량 (L): </label>
+            <label>사용량 (㎥): </label>
             <input type="number" id="usage" placeholder="예: 50" />
             <button type="button" onclick="calculate()">계산하기</button>
         </div>
@@ -76,7 +76,7 @@
             const baseLimit = period * 15;
             const rate = usage <= baseLimit ? 625 : 1015;
             waterFee = usage * rate;
-            console.log(`상수도: ${usage}L * ${rate}원 = ${waterFee}원`);
+            console.log(`상수도: ${usage}㎥ * ${rate}원 = ${waterFee}원`);
 
             // 3. 하수도 요금 (100㎥까지는 574원)
             let sewerFee = 0;
@@ -85,12 +85,12 @@
             } else {
                 alert("하수도 사용량이 100을 넘겼습니다");
             }
-            console.log(`하수도: ${usage}L * 574원 = ${sewerFee}원`);
+            console.log(`하수도: ${usage}㎥ * 574원 = ${sewerFee}원`);
 
 
             // 4. 물 이용 부담금
             const extraFee = usage * 126.3;
-            console.log(`물 이용 부담금: ${usage}L * 126.3원 = ${extraFee}원`);
+            console.log(`물 이용 부담금: ${usage}㎥ * 126.3원 = ${extraFee}원`);
 
             // 5. 합계
             const total = basicFee + waterFee + sewerFee + extraFee;
@@ -107,7 +107,7 @@
             console.log(`-------------------------------------------------------------------`);
 
             // 메시지 생성 후
-            const message = `안녕하세요. 유강팰리스 주인세대입니다. 이번달은 수도요금 납부가 있습니다. ${period}개월간 사용량은 ${usage.toFixed(0)}㎥이며 ${totalRound.toLocaleString()}원입니다.\n농협 이지성 3560110870623으로 부탁드립니다.`;
+            const message = `안녕하세요. 유강팰리스 주인세대입니다. 이번달은 수도요금 납부가 있습니다.\n${period}개월간 사용량은 ${usage.toFixed(0)}㎥이며 ${totalRound.toLocaleString()}원입니다.\n농협 이지성 3560110870623으로 부탁드립니다.`;
 
             document.getElementById("message").innerText = message;
 
