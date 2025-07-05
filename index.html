@@ -71,12 +71,18 @@
             console.log(`기본료: ${basicFee}원`);
 
             // 2. 상수도 요금
-            let waterFee = 0;
-            // const perMonthUsage = usage / period;
             const baseLimit = period * 15;
-            const rate = usage <= baseLimit ? 625 : 1015;
-            waterFee = usage * rate;
-            console.log(`상수도: ${usage}㎥ * ${rate}원 = ${waterFee}원`);
+            let waterFee = 0;
+
+            if (usage <= baseLimit) {
+                waterFee = usage * 625;
+                console.log(`상수도: ${usage}㎥ × 625원 = ${waterFee}원`);
+            } else {
+                const baseUsage = baseLimit;
+                const extraUsage = usage - baseUsage;
+                waterFee = baseUsage * 625 + extraUsage * 1015;
+                console.log(`상수도: ${baseUsage}㎥ × 625원 + ${extraUsage}㎥ × 1015원 = ${waterFee}원`);
+            }
 
             // 3. 하수도 요금 (100㎥까지는 574원)
             let sewerFee = 0;
