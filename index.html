@@ -86,11 +86,20 @@
 
             // 3. 하수도 요금 (100㎥까지는 574원)
             let sewerFee = 0;
-            if (usage <= 100) {
-                sewerFee = usage * 574;
+            if (usage <= baseLimit) {
+                sewerFee = usage * 315;
+                console.log(`상수도: ${usage}㎥ × 315원 = ${waterFee}원`);
             } else {
-                alert("하수도 사용량이 100을 넘겼습니다");
+                const baseUsage = baseLimit;
+                const extraUsage = usage - baseUsage;
+                sewerFee = baseUsage * 315 + extraUsage * 574;
+                console.log(`상수도: ${baseUsage}㎥ × 315원 + ${extraUsage}㎥ × 574원 = ${waterFee}원`);
             }
+            // if (usage <= 100) {
+            //     sewerFee = usage * 574;
+            // } else {
+            //     alert("하수도 사용량이 100을 넘겼습니다");
+            // }
             console.log(`하수도: ${usage}㎥ * 574원 = ${sewerFee}원`);
 
 
