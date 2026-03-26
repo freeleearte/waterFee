@@ -17,6 +17,8 @@
                 <option value="2">2개월 6000원</option>
                 <option value="3" selected>3개월 9000원</option>
                 <option value="4">4개월 12000원</option>
+                <option value="5">5개월 15000원</option>
+                <option value="6">6개월 18000원</option>
             </select>
             <label>사용량 (㎥): </label>
             <input type="number" id="usage" placeholder="예: 50" />
@@ -66,7 +68,7 @@
             }
 
             // 1. 기본료
-            const basicFees = { 1: 3000, 2: 6000, 3: 9000, 4: 12000 };
+            const basicFees = { 1: 3000, 2: 6000, 3: 9000, 4: 12000, 5:15000, 6:18000 };
             const basicFee = basicFees[period];
             console.log(`기본료: ${basicFee}원`);
 
@@ -74,38 +76,37 @@
             const baseLimit = period * 15;
             let waterFee = 0;
 
-            if (usage <= baseLimit) {
-                waterFee = usage * 625;
-                console.log(`상수도: ${usage}㎥ × 625원 = ${waterFee}원`);
-            } else {
-                const baseUsage = baseLimit;
-                const extraUsage = usage - baseUsage;
-                waterFee = baseUsage * 625 + extraUsage * 1015;
-                console.log(`상수도: ${baseUsage}㎥ × 625원 + ${extraUsage}㎥ × 1015원 = ${waterFee}원`);
-            }
+            // if (usage <= baseLimit) {
+                waterFee = usage * 668;
+                console.log(`상수도: ${usage}㎥ × 668원 = ${waterFee}원`);
+            // } else {
+            //     const baseUsage = baseLimit;
+            //     const extraUsage = usage - baseUsage;
+            //     waterFee = baseUsage * 668 + extraUsage * 1015;
+            //     console.log(`상수도: ${baseUsage}㎥ × 625원 + ${extraUsage}㎥ × 1015원 = ${waterFee}원`);
+            // }
 
             // 3. 하수도 요금 (100㎥까지는 574원)
             let sewerFee = 0;
-            if (usage <= baseLimit) {
-                sewerFee = usage * 315;
-                console.log(`상수도: ${usage}㎥ × 315원 = ${waterFee}원`);
-            } else {
-                const baseUsage = baseLimit;
-                const extraUsage = usage - baseUsage;
-                sewerFee = baseUsage * 315 + extraUsage * 574;
-                console.log(`상수도: ${baseUsage}㎥ × 315원 + ${extraUsage}㎥ × 574원 = ${waterFee}원`);
-            }
+            // if (usage <= baseLimit) {
+                sewerFee = usage * 347;
+                console.log(`하수도: ${usage}㎥ × 347원 = ${waterFee}원`);
+            // } else {
+            //     const baseUsage = baseLimit;
+            //     const extraUsage = usage - baseUsage;
+            //     sewerFee = baseUsage * 315 + extraUsage * 574;
+            //     console.log(`하수도: ${baseUsage}㎥ × 315원 + ${extraUsage}㎥ × 574원 = ${waterFee}원`);
+            // }
             // if (usage <= 100) {
             //     sewerFee = usage * 574;
             // } else {
             //     alert("하수도 사용량이 100을 넘겼습니다");
             // }
-            console.log(`하수도: ${usage}㎥ * 574원 = ${sewerFee}원`);
 
 
             // 4. 물 이용 부담금
-            const extraFee = usage * 126.3;
-            console.log(`물 이용 부담금: ${usage}㎥ * 126.3원 = ${extraFee}원`);
+            const extraFee = usage * 126;
+            console.log(`물 이용 부담금: ${usage}㎥ * 126원 = ${extraFee}원`);
 
             // 5. 합계
             const total = basicFee + waterFee + sewerFee + extraFee;
